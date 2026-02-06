@@ -1,0 +1,29 @@
+# Architecture Diagram (Mermaid)
+
+```mermaid
+flowchart TB
+  User[User Browser] --> CF[CloudFront]
+  CF --> WAF[AWS WAF]
+  WAF --> ALB[AWS Load Balancer]
+  ALB --> NGINX[Nginx Ingress Controller]
+
+  NGINX --> LMS[OpenEdX LMS Pod]
+  NGINX --> CMS[OpenEdX CMS Pod]
+  NGINX --> WK[OpenEdX Workers]
+
+  LMS --> RDS[(RDS MySQL)]
+  CMS --> RDS
+  LMS --> MONGO[(MongoDB on EC2)]
+  CMS --> MONGO
+  LMS --> REDIS[(ElastiCache Redis)]
+  WK --> REDIS
+  LMS --> ES[(OpenSearch)]
+
+  LMS --> PVC[(EBS PV/PVC Uploads)]
+  CMS --> PVC
+
+  PROM[Prometheus] --> LMS
+  PROM --> CMS
+  PROM --> NGINX
+  GRAF[Grafana] --> PROM
+```

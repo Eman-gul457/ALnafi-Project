@@ -1,0 +1,24 @@
+# Tutor environment profile for EKS deployment
+
+OPENEDX_COMMON_HOST: lms.yourdomain.com
+CMS_HOST: studio.yourdomain.com
+ENABLE_HTTPS: true
+PLATFORM_NAME: "Al Nafi LMS"
+
+# Caddy disabled as edge; Nginx ingress handles reverse proxy
+ENABLE_WEB_PROXY: false
+
+# External service strategy
+RUN_MYSQL: false
+RUN_MONGODB: false
+RUN_REDIS: false
+RUN_ELASTICSEARCH: false
+
+# Persistent volumes for uploads/media
+K8S_PVC_SIZE: 100Gi
+K8S_PVC_SC_NAME: gp3
+
+# Resource tuning
+K8S_LMS_REPLICAS: 3
+K8S_CMS_REPLICAS: 2
+K8S_WORKER_REPLICAS: 2

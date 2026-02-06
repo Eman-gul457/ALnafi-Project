@@ -1,0 +1,18 @@
+# Terraform
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.*
+**/.terraform.lock.hcl
+
+# Secrets
+*.pem
+*.key
+*.crt
+.env
+
+# Tutor local data
+.tutor/
+
+# Evidence artifacts
+/docs/evidence/
+!/docs/evidence/.gitkeep

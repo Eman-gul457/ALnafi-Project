@@ -1,0 +1,24 @@
+# Network Flow Diagram (Mermaid)
+
+```mermaid
+sequenceDiagram
+  participant U as User
+  participant CF as CloudFront
+  participant W as AWS WAF
+  participant LB as AWS LB
+  participant N as Nginx Ingress
+  participant A as OpenEdX App
+  participant D as External Data Services
+
+  U->>CF: HTTPS request (lms.yourdomain.com)
+  CF->>W: Forward request
+  W->>LB: Allowed request
+  LB->>N: HTTP/HTTPS upstream
+  N->>A: Route to LMS/CMS service
+  A->>D: Query MySQL/Mongo/Redis/OpenSearch
+  D-->>A: Response
+  A-->>N: App response
+  N-->>LB: Upstream response
+  LB-->>CF: Origin response
+  CF-->>U: Cached/forwarded response
+```

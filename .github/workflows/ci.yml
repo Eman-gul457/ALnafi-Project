@@ -1,0 +1,25 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.5
+      - name: Terraform fmt check
+        run: terraform fmt -check -recursive infra/terraform
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v4
+      - name: Kubernetes manifest lint (client dry-run)
+        run: |
+          kubectl apply --dry-run=client -f k8s/openedx/namespace.yaml
+          kubectl apply --dry-run=client -f k8s/openedx/ingress.yaml
+          kubectl apply --dry-run=client -f k8s/openedx/hpa-lms.yaml
+          kubectl apply --dry-run=client -f k8s/openedx/hpa-cms.yaml

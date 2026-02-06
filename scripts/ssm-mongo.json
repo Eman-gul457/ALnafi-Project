@@ -1,0 +1,10 @@
+﻿{
+  "InstanceIds": ["i-04136ab28e57f502a"],
+  "DocumentName": "AWS-RunShellScript",
+  "Parameters": {
+    "commands": [
+      "sudo grep -n authorization /etc/mongod.conf",
+      "sudo mongosh --quiet --eval 'db.getSiblingDB(\"admin\").getUsers()'"
+    ]
+  }
+}

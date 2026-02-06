@@ -1,0 +1,25 @@
+controller:
+  replicaCount: 2
+  ingressClassResource:
+    name: nginx
+    default: true
+  service:
+    type: LoadBalancer
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+      service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+      service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "tcp"
+      service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
+  config:
+    use-forwarded-headers: "true"
+    compute-full-forwarded-for: "true"
+    ssl-protocols: "TLSv1.2 TLSv1.3"
+    ssl-ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256"
+    server-tokens: "false"
+    keep-alive: "75"
+    http2-max-field-size: "16k"
+    http2-max-header-size: "64k"
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
