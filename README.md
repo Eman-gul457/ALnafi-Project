@@ -1,3 +1,4 @@
+
 # OpenEdX on AWS EKS - Technical Assessment Submission
 
 Production-grade OpenEdX LMS/CMS deployment on **AWS EKS** using **Tutor + tutor-k8s**, with externalized data services, Nginx ingress, CloudFront + WAF, autoscaling, observability, backups, and operational runbooks.
