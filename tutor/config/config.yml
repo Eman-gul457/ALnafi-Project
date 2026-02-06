@@ -1,7 +1,7 @@
 # Tutor environment profile for EKS deployment
 
-OPENEDX_COMMON_HOST: lms.yourdomain.com
-CMS_HOST: studio.yourdomain.com
+OPENEDX_COMMON_HOST: lms.alnafi-openedx.ddnsfree.com
+CMS_HOST: studio.alnafi-openedx.ddnsfree.com
 ENABLE_HTTPS: true
 PLATFORM_NAME: "Al Nafi LMS"
 

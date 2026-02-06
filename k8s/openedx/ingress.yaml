@@ -16,11 +16,11 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - lms.yourdomain.com
-        - studio.yourdomain.com
+        - lms.alnafi-openedx.ddnsfree.com
+        - studio.alnafi-openedx.ddnsfree.com
       secretName: openedx-tls
   rules:
-    - host: lms.yourdomain.com
+    - host: lms.alnafi-openedx.ddnsfree.com
       http:
         paths:
           - path: /
@@ -30,7 +30,7 @@ spec:
                 name: lms
                 port:
                   number: 8000
-    - host: studio.yourdomain.com
+    - host: studio.alnafi-openedx.ddnsfree.com
       http:
         paths:
           - path: /

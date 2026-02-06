@@ -14,7 +14,7 @@ export let options = {
   }
 };
 
-const BASE_URL = __ENV.BASE_URL || "https://lms.yourdomain.com";
+const BASE_URL = __ENV.BASE_URL || "https://lms.alnafi-openedx.ddnsfree.com";
 
 export default function () {
   const res = http.get(`${BASE_URL}/`);

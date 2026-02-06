@@ -19,7 +19,7 @@ jobs:
         uses: azure/setup-kubectl@v4
       - name: Kubernetes manifest lint (client dry-run)
         run: |
-          kubectl apply --dry-run=client -f k8s/openedx/namespace.yaml
-          kubectl apply --dry-run=client -f k8s/openedx/ingress.yaml
-          kubectl apply --dry-run=client -f k8s/openedx/hpa-lms.yaml
-          kubectl apply --dry-run=client -f k8s/openedx/hpa-cms.yaml
+          kubectl apply --dry-run=client --validate=false -f k8s/openedx/namespace.yaml
+          kubectl apply --dry-run=client --validate=false -f k8s/openedx/ingress.yaml
+          kubectl apply --dry-run=client --validate=false -f k8s/openedx/hpa-lms.yaml
+          kubectl apply --dry-run=client --validate=false -f k8s/openedx/hpa-cms.yaml

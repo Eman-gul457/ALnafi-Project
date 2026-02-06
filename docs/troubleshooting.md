@@ -1,4 +1,4 @@
-# Troubleshooting Guide
+﻿# Troubleshooting Guide
 
 ## Tutor cannot connect to MySQL
 
@@ -60,3 +60,13 @@ kubectl -n openedx exec deploy/lms -- /bin/sh -c "cd /openedx/edx-platform && py
 - Confirm origin host header rules
 - Validate WAF rules are not over-blocking
 - Check ACM cert in `us-east-1` for CloudFront aliases
+
+## CloudFront creation fails with “account must be verified”
+
+- This is an AWS account limitation for CloudFront on new/unverified accounts.
+- Open AWS Support Center and request account verification for CloudFront, then re-run:
+
+```bash
+terraform apply
+```
+

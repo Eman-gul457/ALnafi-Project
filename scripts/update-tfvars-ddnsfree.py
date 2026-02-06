@@ -2,9 +2,9 @@
 p = Path("/home/ubuntu/openedx-eks-assessment/infra/terraform/envs/prod/terraform.tfvars")
 text = p.read_text().splitlines()
 replacements = {
-    "lms_domain": "lms_domain                  = \"lms.alnafi-openedx.mooo.com\"",
+    "lms_domain": "lms_domain                  = \"lms.alnafi-openedx.ddnsfree.com\"",
     "ingress_alb_dns_name": "ingress_alb_dns_name        = \"ab364486d519c4973b543fa56a874634-93f51c229db90e3d.elb.ap-south-1.amazonaws.com\"",
-    "acm_certificate_arn_us_east_1": "acm_certificate_arn_us_east_1 = \"arn:aws:acm:us-east-1:648955502889:certificate/9a600a74-b2a5-4f35-b8ed-dd4a167da741\"",
+    "acm_certificate_arn_us_east_1": "acm_certificate_arn_us_east_1 = \"arn:aws:acm:us-east-1:648955502889:certificate/576f72f2-2cbd-4f44-a609-af4868da69d7\"",
     "enable_cloudfront": "enable_cloudfront           = true",
 }
 new_lines = []
