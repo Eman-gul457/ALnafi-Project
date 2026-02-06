@@ -41,16 +41,16 @@ module "security" {
 }
 
 module "eks" {
-  source               = "../../modules/eks"
-  name_prefix          = var.name_prefix
-  cluster_version      = var.cluster_version
-  vpc_id               = module.network.vpc_id
-  private_subnet_ids   = module.network.private_subnet_ids
-  node_instance_types  = var.node_instance_types
-  node_desired_size    = var.node_desired_size
-  node_min_size        = var.node_min_size
-  node_max_size        = var.node_max_size
-  node_ami_type        = var.node_ami_type
+  source              = "../../modules/eks"
+  name_prefix         = var.name_prefix
+  cluster_version     = var.cluster_version
+  vpc_id              = module.network.vpc_id
+  private_subnet_ids  = module.network.private_subnet_ids
+  node_instance_types = var.node_instance_types
+  node_desired_size   = var.node_desired_size
+  node_min_size       = var.node_min_size
+  node_max_size       = var.node_max_size
+  node_ami_type       = var.node_ami_type
 }
 
 locals {
@@ -91,10 +91,10 @@ resource "aws_opensearch_domain" "openedx" {
   access_policies = jsonencode({
     Version = "2012-10-17",
     Statement = [{
-      Effect = "Allow",
+      Effect    = "Allow",
       Principal = { AWS = "*" },
-      Action = "es:*",
-      Resource = "arn:aws:es:${var.aws_region}:${data.aws_caller_identity.current.account_id}:domain/${var.name_prefix}-search/*"
+      Action    = "es:*",
+      Resource  = "arn:aws:es:${var.aws_region}:${data.aws_caller_identity.current.account_id}:domain/${var.name_prefix}-search/*"
     }]
   })
 }
@@ -172,8 +172,8 @@ resource "aws_iam_role" "mongo_role" {
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
     Statement = [{
-      Action = "sts:AssumeRole",
-      Effect = "Allow",
+      Action    = "sts:AssumeRole",
+      Effect    = "Allow",
       Principal = { Service = "ec2.amazonaws.com" }
     }]
   })
@@ -192,8 +192,8 @@ resource "aws_iam_instance_profile" "mongo_profile" {
 resource "aws_wafv2_web_acl" "openedx" {
   count    = var.enable_cloudfront ? 1 : 0
   provider = aws.us_east_1
-  name  = "${var.name_prefix}-waf"
-  scope = "CLOUDFRONT"
+  name     = "${var.name_prefix}-waf"
+  scope    = "CLOUDFRONT"
 
   default_action {
     allow {}
@@ -261,7 +261,7 @@ resource "aws_cloudfront_distribution" "openedx" {
     custom_origin_config {
       http_port              = 80
       https_port             = 443
-      origin_protocol_policy = "http-only"
+      origin_protocol_policy = "https-only"
       origin_ssl_protocols   = ["TLSv1.2"]
     }
   }
