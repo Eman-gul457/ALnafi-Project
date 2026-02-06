@@ -10,3 +10,4 @@
 - **Prometheus/Grafana**: operational observability and autoscaling diagnostics.
 - **Backups**: combines logical dumps and volume snapshots for layered recovery.
 
+

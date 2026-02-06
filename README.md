@@ -3,7 +3,7 @@
 
 Production-grade OpenEdX LMS/CMS deployment on **AWS EKS** using **Tutor + tutor-k8s**, with externalized data services, Nginx ingress, CloudFront + WAF, autoscaling, observability, backups, and operational runbooks.
 
-Target URL: `https://lms.alnafi-openedx.ddnsfree.com`
+Target URL: `https://lms.blackmode.io`
 
 ## 1. Scope Alignment With Assessment
 
@@ -50,7 +50,7 @@ openedx-eks-assessment/
 
 ## 3. High-Level Architecture
 
-1. User request enters CloudFront at `lms.alnafi-openedx.ddnsfree.com`
+1. User request enters CloudFront at `lms.blackmode.io`
 2. AWS WAF inspects and filters requests (rate limiting + managed rules)
 3. CloudFront forwards dynamic traffic to AWS Load Balancer (ingress-nginx service)
 4. Nginx ingress routes traffic to OpenEdX LMS/CMS services in EKS
@@ -163,19 +163,19 @@ kubectl apply -f ../../../k8s/openedx/probes-patch.yaml
 ### Step 6: DNS and HTTPS finalization
 
 - Create Route53 (or DNS provider) CNAME:
-  - `lms.alnafi-openedx.ddnsfree.com` -> CloudFront distribution domain
+  - `lms.blackmode.io` -> CloudFront distribution domain
 - Validate ACM certificate in `us-east-1` for CloudFront
 - Confirm:
-  - `https://lms.alnafi-openedx.ddnsfree.com`
+  - `https://lms.blackmode.io`
 
-Note: until a real domain is provided, ingress uses a self-signed TLS secret for `lms.alnafi-openedx.ddnsfree.com`.
+Note: until a real domain is provided, ingress uses a self-signed TLS secret for `lms.blackmode.io`.
 
 ## 6. Evidence Collection Checklist
 
 Capture these for submission:
 
 - EKS nodes/pods healthy (`kubectl get nodes,pods -A`)
-- OpenEdX LMS page at `https://lms.alnafi-openedx.ddnsfree.com`
+- OpenEdX LMS page at `https://lms.blackmode.io`
 - WAF WebACL associated with CloudFront
 - CloudFront behaviors and cache metrics
 - External DB connectivity from app logs
@@ -227,5 +227,6 @@ See `docs/troubleshooting.md`.
 - Push repo to GitHub
 - Attach screenshots in `docs/evidence/`
 - Email links and evidence package before **9 February 2026**
+
 
 

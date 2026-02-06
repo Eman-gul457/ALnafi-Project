@@ -1,4 +1,4 @@
-# Network Flow Diagram (Mermaid)
+﻿# Network Flow Diagram (Mermaid)
 
 ```mermaid
 sequenceDiagram
@@ -10,7 +10,7 @@ sequenceDiagram
   participant A as OpenEdX App
   participant D as External Data Services
 
-  U->>CF: HTTPS request (lms.alnafi-openedx.ddnsfree.com)
+  U->>CF: HTTPS request (lms.blackmode.io)
   CF->>W: Forward request
   W->>LB: Allowed request
   LB->>N: HTTP/HTTPS upstream
@@ -22,3 +22,4 @@ sequenceDiagram
   LB-->>CF: Origin response
   CF-->>U: Cached/forwarded response
 ```
+

@@ -70,3 +70,4 @@ kubectl -n openedx exec deploy/lms -- /bin/sh -c "cd /openedx/edx-platform && py
 terraform apply
 ```
 
+

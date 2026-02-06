@@ -1,4 +1,4 @@
-import http from "k6/http";
+﻿import http from "k6/http";
 import { check, sleep } from "k6";
 
 export let options = {
@@ -14,7 +14,7 @@ export let options = {
   }
 };
 
-const BASE_URL = __ENV.BASE_URL || "https://lms.alnafi-openedx.ddnsfree.com";
+const BASE_URL = __ENV.BASE_URL || "https://lms.blackmode.io";
 
 export default function () {
   const res = http.get(`${BASE_URL}/`);
@@ -23,3 +23,4 @@ export default function () {
   });
   sleep(1);
 }
+

@@ -1,7 +1,7 @@
-# Tutor environment profile for EKS deployment
+﻿# Tutor environment profile for EKS deployment
 
-OPENEDX_COMMON_HOST: lms.alnafi-openedx.ddnsfree.com
-CMS_HOST: studio.alnafi-openedx.ddnsfree.com
+OPENEDX_COMMON_HOST: lms.blackmode.io
+CMS_HOST: studio.blackmode.io
 ENABLE_HTTPS: true
 PLATFORM_NAME: "Al Nafi LMS"
 
@@ -22,3 +22,4 @@ K8S_PVC_SC_NAME: gp3
 K8S_LMS_REPLICAS: 3
 K8S_CMS_REPLICAS: 2
 K8S_WORKER_REPLICAS: 2
+

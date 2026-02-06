@@ -59,11 +59,11 @@ kubectl -n openedx exec deploy/lms -- /bin/sh -c "cd /openedx/edx-platform && py
 
 1. Validate CloudFront distribution
 2. Ensure WAF WebACL attached
-3. Point `lms.alnafi-openedx.ddnsfree.com` CNAME to CloudFront domain
+3. Point `lms.blackmode.io` CNAME to CloudFront domain
 4. Validate HTTPS and HTTP/2:
 
 ```bash
-curl -I --http2 https://lms.alnafi-openedx.ddnsfree.com
+curl -I --http2 https://lms.blackmode.io
 ```
 
 ## E. Validation
@@ -74,4 +74,5 @@ kubectl get ingress -n openedx
 kubectl get hpa -n openedx
 k6 run loadtest/lms-smoke.js
 ```
+
 
