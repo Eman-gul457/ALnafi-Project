@@ -1,7 +1,7 @@
 ﻿
 # OpenEdX on AWS EKS - Technical Assessment Submission
 
-Production-grade OpenEdX LMS/CMS deployment on **AWS EKS** using **Tutor + tutor-k8s**, with externalized data services, Nginx ingress, CloudFront + WAF, autoscaling, observability, backups, and operational runbooks.
+Production-grade OpenEdX LMS/CMS deployment on **AWS EKS** using **Tutor + tutor-k8s**, with externalized data services, Nginx ingress, autoscaling, observability, backups, and operational runbooks. CloudFront + WAF remain the target architecture and are documented as a future enhancement (blocked by AWS account access restrictions at deployment time).
 
 Target URL: `https://lms.blackmode.io`
 
@@ -19,7 +19,7 @@ This repository implements the mandatory requirements:
   - Redis (Amazon ElastiCache)
 - Nginx ingress as reverse proxy (replacing Caddy edge role)
 - TLS termination and HTTP/2 at ingress/load balancer edge
-- CloudFront CDN + AWS WAF integration
+- CloudFront CDN + AWS WAF integration (future enhancement; blocked by AWS account access restrictions at deployment time)
 - PV/PVC for uploads/media
 - HPA for LMS/CMS
 - Monitoring and logging stack
@@ -50,13 +50,10 @@ openedx-eks-assessment/
 
 ## 3. High-Level Architecture
 
-1. User request enters CloudFront at `lms.blackmode.io`
-2. AWS WAF inspects and filters requests (rate limiting + managed rules)
-3. CloudFront forwards dynamic traffic to AWS Load Balancer (ingress-nginx service)
-4. Nginx ingress routes traffic to OpenEdX LMS/CMS services in EKS
-5. OpenEdX services use external data backends (RDS, MongoDB, OpenSearch, ElastiCache)
-6. Static assets cached globally by CloudFront
-7. Prometheus/Grafana scrape cluster and application metrics
+1. User request enters Nginx Ingress at `lms.blackmode.io`
+2. Nginx ingress routes traffic to OpenEdX LMS/CMS services in EKS
+3. OpenEdX services use external data backends (RDS, MongoDB, OpenSearch, ElastiCache)
+4. Prometheus/Grafana scrape cluster and application metrics
 
 See:
 - `diagrams/architecture.mmd`
@@ -64,7 +61,7 @@ See:
 
 ## 4. Prerequisites
 
-- AWS account with IAM permissions for VPC/EKS/RDS/EC2/ElastiCache/OpenSearch/WAF/CloudFront/Route53
+- AWS account with IAM permissions for VPC/EKS/RDS/EC2/ElastiCache/OpenSearch/Route53 (CloudFront/WAF permissions required for future enhancement)
 - AWS CLI v2 configured
 - Terraform >= 1.7
 - kubectl >= 1.30
@@ -86,7 +83,7 @@ terraform plan
 terraform apply -auto-approve
 ```
 
-Outputs include EKS cluster name, ingress endpoint, CloudFront distribution domain, and database endpoints.
+Outputs include EKS cluster name, ingress endpoint, and database endpoints. CloudFront distribution outputs are part of the future enhancement.
 
 ### Step 2: Configure kube access and install ingress-nginx
 
@@ -162,9 +159,8 @@ kubectl apply -f ../../../k8s/openedx/probes-patch.yaml
 
 ### Step 6: DNS and HTTPS finalization
 
-- Create Route53 (or DNS provider) CNAME:
-  - `lms.blackmode.io` -> CloudFront distribution domain
-- Validate ACM certificate in `us-east-1` for CloudFront
+- Create DNS CNAME:
+  - `lms.blackmode.io` -> ingress load balancer
 - Confirm:
   - `https://lms.blackmode.io`
 
@@ -176,8 +172,8 @@ Capture these for submission:
 
 - EKS nodes/pods healthy (`kubectl get nodes,pods -A`)
 - OpenEdX LMS page at `https://lms.blackmode.io`
-- WAF WebACL associated with CloudFront
-- CloudFront behaviors and cache metrics
+- (Future) WAF WebACL associated with CloudFront
+- (Future) CloudFront behaviors and cache metrics
 - External DB connectivity from app logs
 - HPA scaling events during load test
 - Prometheus and Grafana dashboards

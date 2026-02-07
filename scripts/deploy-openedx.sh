@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Expected runtime: Linux host/EC2 with kubectl configured for the target EKS cluster.
 set -euo pipefail
 
 kubectl apply -f k8s/openedx/namespace.yaml

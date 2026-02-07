@@ -66,6 +66,11 @@ kubectl -n openedx exec deploy/lms -- /bin/sh -c "cd /openedx/edx-platform && py
 curl -I --http2 https://lms.blackmode.io
 ```
 
+CDN & TLS Termination Decision:
+CloudFront and AWS WAF were originally part of the target production architecture; however, due to AWS service access restrictions encountered during the deployment window, CloudFront could not be provisioned at this stage. To ensure secure and uninterrupted access to the OpenEdX platform, HTTPS termination is implemented directly at the Kubernetes Nginx Ingress layer using publicly trusted Let’s Encrypt certificates issued via cert-manager. This approach removes browser security warnings and enables valid TLS encryption while preserving the intended ingress architecture. CloudFront and WAF remain documented as a future enhancement for production hardening.
+
+Note: No CloudFront distribution is currently provisioned; the WAF resource exists but is not attached to any distribution and remains part of the future target state.
+
 ## E. Validation
 
 ```bash

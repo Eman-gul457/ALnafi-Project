@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Expected runtime: Linux host/EC2 with network access to external databases.
 set -euo pipefail
 
 : "${MYSQL_HOST:?required}"; : "${MYSQL_USER:?required}"; : "${MYSQL_PASSWORD:?required}"

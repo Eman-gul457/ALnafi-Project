@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Expected runtime: Linux host/EC2 with access to backup artifacts and databases.
 set -euo pipefail
 
 : "${BACKUP_DIR:?required}"

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Expected runtime: Linux host/EC2 with access to external databases and S3 (if configured).
 set -euo pipefail
 
 BACKUP_DIR=${BACKUP_DIR:-/tmp/openedx-backups/$(date +%F-%H%M%S)}

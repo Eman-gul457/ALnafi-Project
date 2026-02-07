@@ -189,6 +189,7 @@ resource "aws_iam_instance_profile" "mongo_profile" {
   role = aws_iam_role.mongo_role.name
 }
 
+# Future target state: WAF attached to CloudFront once AWS account access is verified.
 resource "aws_wafv2_web_acl" "openedx" {
   count    = var.enable_cloudfront ? 1 : 0
   provider = aws.us_east_1
@@ -244,6 +245,7 @@ resource "aws_wafv2_web_acl" "openedx" {
   }
 }
 
+# Future target state: CloudFront distribution for global CDN once AWS account access is verified.
 resource "aws_cloudfront_distribution" "openedx" {
   count               = var.enable_cloudfront ? 1 : 0
   provider            = aws.us_east_1

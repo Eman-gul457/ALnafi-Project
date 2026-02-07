@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Expected runtime: Linux host/EC2 with internet access and Python tooling.
 set -euo pipefail
 
 echo "[1/4] Installing tutor-k8s plugin"
