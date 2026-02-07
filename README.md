@@ -230,3 +230,15 @@ See `docs/troubleshooting.md`.
 
 
 
+
+\n## TLS (Let\u2019s Encrypt)
+
+We use cert-manager with a ClusterIssuer (letsencrypt-prod) to issue and auto-renew TLS for lms.blackmode.io when CloudFront is blocked by account verification.
+
+
+
+
+## Professional landing content
+
+A custom Al Nafi landing page is applied using a comprehensive theme (see 	utor/themes/alnafi/).
+
