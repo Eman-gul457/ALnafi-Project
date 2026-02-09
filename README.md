@@ -65,7 +65,7 @@ Provisioning all AWS infrastructure
 - mongo-userdata.sh – MongoDB EC2 initialization
 - elasticsearch-userdata.sh – OpenSearch setup
 - variables.tf / outputs.tf – Terraform inputs & outputs
-✅ Shows infrastructure-as-code discipline
+- Shows infrastructure-as-code discipline
 
 🔹 k8s/
 ---
