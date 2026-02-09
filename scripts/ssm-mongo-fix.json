@@ -6,7 +6,7 @@
       "sudo sed -i 's/authorization: enabled/authorization: disabled/' /etc/mongod.conf",
       "sudo systemctl restart mongod",
       "sleep 5",
-      "sudo mongosh --quiet --eval 'db.getSiblingDB(\"admin\").getUser(\"openedx\") || db.getSiblingDB(\"admin\").createUser({user:\"openedx\",pwd:\"OpenedxMongo2026!\",roles:[{role:\"readWriteAnyDatabase\",db:\"admin\"}]})'",
+      "sudo mongosh --quiet --eval 'db.getSiblingDB(\"admin\").getUser(\"openedx\") || db.getSiblingDB(\"admin\").createUser({user:\"openedx\",pwd:\"${OPENEDX_MONGO_PASSWORD}",roles:[{role:\"readWriteAnyDatabase\",db:\"admin\"}]})'",
       "sudo sed -i 's/authorization: disabled/authorization: enabled/' /etc/mongod.conf",
       "sudo systemctl restart mongod"
     ]
