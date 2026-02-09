@@ -12,12 +12,10 @@ CloudFront and AWS WAF were originally part of the target production architectur
 Note: No CloudFront distribution is currently provisioned; the WAF resource exists but is not attached to any distribution and remains part of the future target state.
 - **HPA on LMS/CMS**: elasticity for variable learner traffic and enrollment spikes.
 - **PV/PVC for uploads**: decouples media from pod lifecycle.
-- **Prometheus/Grafana**: operational observability and autoscaling diagnostics.
 - **Backups**: combines logical dumps and volume snapshots for layered recovery.
 
 
 
-\n## TLS (Let\u2019s Encrypt)
 
 We use cert-manager with a ClusterIssuer (letsencrypt-prod) to issue and auto-renew TLS for lms.blackmode.io when CloudFront is blocked by account verification.
 
