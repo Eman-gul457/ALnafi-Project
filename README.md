@@ -20,6 +20,14 @@ The goal was not just to “make it run”, but to:
 - This repository represents hands-on execution, not theory.
 
 ---
+## 2. High-Level Architecture (Easy View)
+
+The diagram below shows how users access the OpenEdX LMS, how traffic flows through AWS EKS,
+and how the platform securely connects to external databases.
+
+<img width="1536" height="1024" alt="ChatGPT Image Feb 9, 2026, 09_34_59 AM" src="https://github.com/user-attachments/assets/745b7ae3-131b-4113-b7a0-2d3a90c835d5" />
+
+---
 2️⃣ What Was Built:
 ---
 - AWS EKS cluster with proper networking
