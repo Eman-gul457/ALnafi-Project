@@ -3,7 +3,7 @@ p = Path("/home/ubuntu/openedx-eks-assessment/infra/terraform/envs/prod/terrafor
 text = p.read_text().splitlines()
 replacements = {
     "lms_domain": "lms_domain                  = \"lms.blackmode.io\"",
-    "ingress_alb_dns_name": "ingress_alb_dns_name        = \"ab364486d519c4973b543fa56a874634-93f51c229db90e3d.elb.ap-south-1.amazonaws.com\"",
+    "ingress_alb_dns_name": "ingress_alb_dns_name        = \"<ALB_DNS_NAME>\"",
     "acm_certificate_arn_us_east_1": "acm_certificate_arn_us_east_1 = \"arn:aws:acm:us-east-1:648955502889:certificate/9cee78e5-e04e-4eee-9b89-5296609a744a\"",
     "enable_cloudfront": "enable_cloudfront           = true",
 }
