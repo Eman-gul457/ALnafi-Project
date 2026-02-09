@@ -82,7 +82,6 @@ k6 run loadtest/lms-smoke.js
 
 
 
-\n## TLS (Let\u2019s Encrypt)
 
 We use cert-manager with a ClusterIssuer (letsencrypt-prod) to issue and auto-renew TLS for lms.blackmode.io when CloudFront is blocked by account verification.
 
